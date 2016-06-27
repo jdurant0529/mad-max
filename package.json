@@ -1,0 +1,24 @@
+{
+  "name": "mad-max",
+  "version": "1.0.0",
+  "description": "",
+  "main": "max.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdurant0529/mad-max.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdurant0529/mad-max/issues"
+  },
+  "homepage": "https://github.com/jdurant0529/mad-max#readme",
+  "dependencies": {
+    "inquirer": "^1.1.0",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {}
+}
