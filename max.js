@@ -4,25 +4,27 @@ function max() {
 
     var currentVehicle = {};
 
-    var vehicleOptions = [{
-        type: 'Sedan',
-        wheels: '4',
-        tankSize: '20',
-        oilLife: '100',
-        fuelRemain: '20',
-    }, {
-        type: 'Truck',
-        wheels: '4',
-        tankSize: '40',
-        oilLife: '100',
-        fuelRemain: '40',
-    }, {
-        type: 'Motorcyle',
-        wheels: '4',
-        tankSize: '40',
-        oilLife: '100',
-        fuelRemain: '40',
-    }]
+    // var vehicleOptions = [{
+    //     type: 'Sedan',
+    //     wheels: '4',
+    //     tankSize: '20',
+    //     oilLife: '100',
+    //     fuelRemain: '20',
+    // }, {
+    //     type: 'Truck',
+    //     wheels: '4',
+    //     tankSize: '40',
+    //     oilLife: '100',
+    //     fuelRemain: '40',
+    // }, {
+    //     type: 'Motorcyle',
+    //     wheels: '4',
+    //     tankSize: '40',
+    //     oilLife: '100',
+    //     fuelRemain: '40',
+    //     attack: '20',
+    //     defense: '30',
+    // }]
 
     var vehicleTypes = ['Sedan', 'Truck', 'Motorcycle'];
 
@@ -68,18 +70,36 @@ function max() {
             } // end of case switch statement
 
            console.log(currentVehicle);
-
+           whatyouwanttodo();
         }
 
     ); // end of inquirer.prompt to choose vehicle
 
     function transport() {
+        fuelRemain = fuelRemain -20
 
     }
 
     function buyGas(tankSize, inTank) {
 
     }
+
+    function whatyouwanttodo () {
+        inquirer.prompt([{
+            type: "list",
+            name: "taskOption",
+            message: "What you want to do?",
+            choices: [
+                    'refuel',
+                    'fix body',
+                    'oil change',
+                    ]
+                        
+        }
+        ]).then(function(choice) {
+            console.log(choice);
+        })
+    }
 } // end of max function
 
-max() //start mad-max game!!!
+max() //start mad-max game!!! 
