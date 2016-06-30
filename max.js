@@ -12,30 +12,8 @@ function max() {
 
     // array of everything
     var currentVehicle = {};
-    // var currentTask = {};
 
-    // var vehicleOptions = [{
-    //     type: 'Sedan',
-    //     wheels: '4',
-    //     tankSize: '20',
-    //     oilLife: '100',
-    //     fuelRemain: '20',
-    // }, {
-    //     type: 'Truck',
-    //     wheels: '4',
-    //     tankSize: '40',
-    //     oilLife: '100',
-    //     fuelRemain: '40',
-    // }, {
-    //     type: 'Motorcyle',
-    //     wheels: '4',
-    //     tankSize: '40',
-    //     oilLife: '100',
-    //     fuelRemain: '40',
-    //     attack: '20',
-    //     defense: '30',
-    // }]
-
+    // object of car choices
     var vehicleTypes = ['Sedan', 'Truck', 'Motorcycle'];
 
     inquirer.prompt([{
@@ -46,87 +24,84 @@ function max() {
         }
 
     ]).then(function(choice) {
-            console.log("You chose " + choice.vehicleChoice);
+        console.log("You chose " + choice.vehicleChoice);
 
-            switch (choice.vehicleChoice) {
-                case 'Sedan':
-                    currentVehicle = {
-                        type: 'Sedan',
-                        wheels: '4',
-                        tankSize: '20',
-                        oilLife: '100',
-                        fuelRemain: '20',
-                    };
-                    break;
-                case 'Truck':
-                    currentVehicle = {
-                        type: 'Truck',
-                        wheels: '4',
-                        tankSize: '40',
-                        oilLife: '100',
-                        fuelRemain: '40',
-                    };
-                    break;
-                case 'Motorcycle':
-                    currentVehicle = {
-                        type: 'Motorcycle',
-                        wheels: '2',
-                        tankSize: '15',
-                        oilLife: '100',
-                        fuelRemain: '15',
-                    };
-                    break;
-
-            } // end of case switch statement
-        console.log('--------------------------------------------------');
-        console.log(currentVehicle);
-        console.log('--------------------------------------------------');
-        whatyouwanttodo();
+        switch (choice.vehicleChoice) {
+            case 'Sedan':
+                currentVehicle = {
+                    type: 'Sedan',
+                    wheels: '4',
+                    tankSize: '25',
+                    fuelRemain: '25',
+                    oilLife: '100',
+                    oilStatus: '100',
+                };
+                break;
+            case 'Truck':
+                currentVehicle = {
+                    type: 'Truck',
+                    wheels: '4',
+                    tankSize: '35',
+                    fuelRemain: '35',
+                    oilLife: '100',
+                    oilStatus: '100',
+                };
+                break;
+            case 'Motorcycle':
+                currentVehicle = {
+                    type: 'Motorcycle',
+                    wheels: '2',
+                    tankSize: '15',
+                    fuelRemain: '15',
+                    oilLife: '100',
+                    oilStatus: '100',
+                };
+                break;
         }
-    ); // end of inquirer.prompt to choose vehicle
+    console.log("You have chosen: " + currentVehicle);
+    whatyouwanttodo();
+    });
 
+
+    // This function runs the transport mission
     function transport() {
-        currentVehicle.fuelRemain = currentVehicle.fuelRemain -20;
+        currentVehicle.fuelRemain = currentVehicle.fuelRemain -2;
         currentVehicle.oilLife = currentVehicle.oilLife -5;
-        console.log('--------------------------------------------------');
         console.log("This mission cost you; Fuel (-20), Oil (-5)");
-        console.log('--------------------------------------------------');
-        console.log('Current Fuel: ' + currentVehicle.fuelRemain);
-        console.log('Current Oil: ' + currentVehicle.oilLife);
-        console.log('--------------------------------------------------');
+    };
 
-        // check after mission complete
-        function checkFuelOil() {
-            if (currentVehicle.fuelRemain < 0) {
-                console.log('You have run out of fuel...');
-                console.log('--------------------------------------------------');
-            } else if (currentVehicle.oilLife < 0) {
-                console.log('Something is wrong with your engine. Your car has stopped working.');
-                console.log('-------------------------------------------------------------------');
-            } else {
-                console.log("Well done. Mission successful.");
-                console.log('--------------------------------------------------');
-            }
-        }
-    
-    }
 
-    // function to refuel your car
+    // This function runs to attempt to refuel your car
     function refuel() {
         if (currentVehicle.fuelRemain < currentVehicle.tankSize) {
         console.log("Fuel status: " + currentVehicle.fuelRemain);
         console.log("Searching for fuel...");
         console.log("No fuel found.");
-        console.log('--------------------------------------------------');
         
         } else {
             console.log("Tank is full.");
         }
-        whatyouwanttodo();
-    }
+
+    // call function after refuel has been completed
+    whatyouwanttodo();
+    };
+
+    // This function runs when you choose to check your oil
+    function checkOil() {
+        if (currentVehicle.oilLife < current.oilStatus) {
+
+            console.log("Current Oil: " + current.oilStatus);
+
+        } else if (currentVehicle.oilStatus < 0) {
+            console.log('Something is wrong with your engine. Your car has stopped working.');
+        } else {
+            console.log("Your oil is fine.");
+        }
+    };
+
 
     // possible actions while in shop
-    var maxActions = ['refuel', 'transport'];
+    var maxActions = ['refuel', 'transport', 'oil check'];
 
     function whatyouwanttodo() {
         inquirer.prompt([{
@@ -145,8 +120,11 @@ function max() {
                 case 'transport':
                     transport();
                     break;
-
+                case 'oil check':
+                    checkOil();
+                    break;
             }// end of switch
+
         whatyouwanttodo();
 
         });
